@@ -31,11 +31,11 @@ public class Movement : MonoBehaviour
     private LayerMask groundLayer;
     [SerializeField] private float rayCastDistance;
 
-    [Header("Refs")] private Vector2 position;
+    [Header("Refs")] 
     private bool canMove = false;                  
 
     [Header("OtherStuff")] public int direction = 1; //IN which direciton the player is facing 1 is to the right -1 is to the left
-    
+    public static Vector3 Position;
     
     // Start is called before the first frame update
     void Start()
@@ -51,6 +51,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Position = transform.position; 
         if (!canMove) return;
         GroundCheck();
         WallCheck();
@@ -151,8 +152,6 @@ public class Movement : MonoBehaviour
         if (jumping && timeJumped + jumpDuration - Time.time <= 0)
         {
             EndOfJump();
-            Debug.Log(transform.position.y);
-
         }
     }
 
