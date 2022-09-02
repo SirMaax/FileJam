@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4c1fb599d1abb478cf27bf7f30e523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 1
+  force: 100
   maxX: 20
   maxY: 20
+  target: {x: 0, y: 0, z: 0}
 --- !u!212 &241763661706124987
 SpriteRenderer:
   m_ObjectHideFlags: 0

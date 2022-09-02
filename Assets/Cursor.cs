@@ -1,31 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Cursor : MonoBehaviour
 {
-    private Vector3 mouse;
-    
+    [SerializeField] private float aimRadius;
+    public Vector3 actualMousePos;
+    private InputManager _inputManager;
+    public GameObject inputmanager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _inputManager = inputmanager.GetComponent<InputManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        var mouseWorldPos = Camera.main.ScreenToWorldPoint(mouse);
-        mouseWorldPos.z = 0f; // zero z
-        Debug.Log(mouseWorldPos);
-        transform.position = mouseWorldPos;
-    }
 
-    public void MousePosition(InputAction.CallbackContext context)
-    {
-        mouse = context.ReadValue<Vector2>();
-        mouse.z = Camera.main.gameObject.transform.position.z * -1;
-        Debug.Log(mouse);
+        var mouseWorldPos = Camera.main.ScreenToWorldPoint(_inputManager.aimingMouse);
+        mouseWorldPos.z = 0;
+        Debug.Log("mouse is"+ mouseWorldPos);
+
+        Vector2 distance = (mouseWorldPos - Movement.Position);
+        var temp = Mathf.Clamp(distance.magnitude, 0, aimRadius);
+        distance = distance.normalized;
+        
+        actualMousePos = Movement.Position + (Vector3)distance * temp;
+        transform.position = actualMousePos;
     }
 }
