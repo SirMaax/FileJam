@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2920766977310082424}
   - component: {fileID: 2920766977310082427}
   - component: {fileID: 2920766977310082428}
+  - component: {fileID: 6307155686665339225}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -146,3 +147,39 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6307155686665339225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920766977310082310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3293ddf54eb05c146a199236f16e5d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfEnemy: 0
+  shootCooldown:
+  - 1
+  - 0
+  - 0
+  bullets:
+  - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  moveSpeed:
+  - 0.1
+  - 0
+  - 0
+  moveTime:
+  - 2
+  - 0
+  - 0
+  direction: 0
+  minDistance: 0
+  moving: 0
+  maxDistance: 0
+  nextTarget: 0
+  distanceToNext: 0
+  canShoot: 0
