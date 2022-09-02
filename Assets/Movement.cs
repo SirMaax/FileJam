@@ -10,33 +10,52 @@ public class Movement : MonoBehaviour
     public Vector3 desiredMove;
     private Vector2 vertical;
 
-    [Header("CharacterStatus")] public bool jumping;
+    [Header("CharacterStatus")] 
+    public bool jumping;
     public bool grounded;
 
-    [Header("Jumping")] [SerializeField] private float gravityForce;
+    [Header("Jumping")] [SerializeField] private float gravityAmplifier;
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpDuration;
-    private double timeJumped;
+    private double timeJumped;                //When the player started the last jump
+    private float colliderHeight;
+    private float colliderWidth;
 
+    [Header("Dashing")]
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashForce;
+    private bool dashing = false;
+    private float timeDashed;               //When the player started the last dash
+    
     [Header("GroundCheck")] [SerializeField]
     private LayerMask groundLayer;
-
     [SerializeField] private float rayCastDistance;
 
     [Header("Refs")] private Vector2 position;
-    public int test = 0;
+    private bool canMove = false;                  
 
+    [Header("OtherStuff")] public int direction = 1; //IN which direciton the player is facing 1 is to the right -1 is to the left
+    
+    
     // Start is called before the first frame update
     void Start()
     {
+        //Wait 1 second before moving
+        StartCoroutine(WaitOneSec());
         desiredMove = Vector3.zero;
+        colliderHeight = GetComponent<BoxCollider2D>().size.y/2;
+        colliderWidth = GetComponent<BoxCollider2D>().size.x/2;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!canMove) return;
         GroundCheck();
+        WallCheck();
         JumpDurationCheck();
+        DashDurationCheck();
         if (!grounded)
         {
             Gravity();
@@ -49,7 +68,8 @@ public class Movement : MonoBehaviour
     public void Horizontal(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>();
-        Debug.Log(horizontal);
+        if (horizontal.x < 0) direction = -1;
+        else if (horizontal.x > 0) direction = 1;
     }
 
     //Get vertical Input
@@ -66,30 +86,45 @@ public class Movement : MonoBehaviour
         Debug.DrawRay(transform.position, Vector2.down * rayCastDistance, Color.green);
         //
         RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.down, rayCastDistance, groundLayer);
-        if (ray.collider != null) TouchGround();
+        if (ray.collider != null)TouchGround(ray);
+
         else grounded = false;
     }
 
     //Gets called when touching the ground
-    private void TouchGround()
+    private void TouchGround(RaycastHit2D ray)
     {
         if (grounded) return;
+
+       Vector3 newPos = Physics2D.ClosestPoint(transform.position, ray.collider);
+       newPos.y += colliderHeight;
+       transform.position = newPos;
+
+        // //Set the height correct
+        // float newYPos = ray.transform.position.y + colliderHeight;
+        // Vector3 temp = transform.position;
+        // temp.y = newYPos;
+        
         grounded = true;
         desiredMove.y = 0;
     }
 
     private void Move()
     {
-        desiredMove.x = horizontal.x * Time.deltaTime;
-
-
-        transform.position += desiredMove * force;
+        
+        if (dashing)
+        {
+            desiredMove.y = 0;
+            desiredMove.x = direction * dashForce;
+        }
+        else desiredMove.x = horizontal.x;
+        transform.Translate(desiredMove * force * Time.deltaTime );
     }
 
     private void Gravity()
     {
-        if (jumping) return;
-        desiredMove.y = gravityForce;
+        if (jumping || dashing) return;
+        desiredMove.y = gravityAmplifier * Physics2D.gravity.y;
     }
 
     //What Happens when the player triggers the jump
@@ -99,22 +134,25 @@ public class Movement : MonoBehaviour
         {
             if (!CanJump()) return; //Coyote Time
             //InputBuffer
+            
             jumping = true;
             timeJumped = Time.time;
             desiredMove.y = jumpForce;
         }
         if(context.canceled)
         {
-            test = 0;
             EndOfJump();
         }
     }
 
     private void JumpDurationCheck()
     {
+        
         if (jumping && timeJumped + jumpDuration - Time.time <= 0)
         {
             EndOfJump();
+            Debug.Log(transform.position.y);
+
         }
     }
 
@@ -129,7 +167,65 @@ public class Movement : MonoBehaviour
     //What happens after the jump
     private void EndOfJump()
     {
-        Debug.Log(transform.position.y);
         jumping = false;
+    }
+
+    private IEnumerator WaitOneSec()
+    {
+        yield return new WaitForSeconds(0.1f);
+        canMove = true;
+    }
+    
+    //Prevents the player from going through walls
+    private void WallCheck()
+    {
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, Vector2.left, rayCastDistance, groundLayer);
+        if (ray.collider != null)
+        {
+            Vector3 newPos = Physics2D.ClosestPoint(transform.position, ray.collider);
+            newPos.x += colliderWidth;
+            transform.position = newPos;
+            EndOfDash();
+        }
+         ray = Physics2D.Raycast(transform.position, Vector2.right, rayCastDistance, groundLayer);
+        if (ray.collider != null)
+        {
+            Vector3 newPos = Physics2D.ClosestPoint(transform.position, ray.collider);
+            newPos.x -= colliderWidth;
+            transform.position = newPos;
+            EndOfDash();
+        }
+    }
+
+    public void Dash(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (!CanDash()) return; //Coyote Time
+            
+            
+            dashing = true;
+            timeDashed = Time.time;
+        }
+
+    }
+    //Checks if the player is allowed to jump. Including coyote time
+    private bool CanDash()
+    {
+        if (!dashing) return true;
+        return false;
+    }
+
+    private void DashDurationCheck()
+    {
+        if (dashing && timeDashed + dashDuration - Time.time <= 0)
+        {
+            EndOfDash();
+        }
+    }
+
+    private void EndOfDash()
+    {
+        dashing = false;
     }
 }

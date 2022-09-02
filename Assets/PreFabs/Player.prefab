@@ -47,16 +47,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ca5489938a40b541b4f32b7fc946ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 0.025
+  force: 7
+  desiredMove: {x: 0, y: 0, z: 0}
   jumping: 0
   grounded: 0
-  gravityForce: -0.5
-  jumpForce: 0
-  jumpDuration: 0
+  gravityForce: -2
+  jumpForce: 2
+  jumpDuration: 0.3
+  dashDuration: 0
+  dashForce: 0
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  rayCastDistance: 0.5
+  rayCastDistance: 0.52
 --- !u!212 &9192173196797350570
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -242,6 +245,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 97a85a06-4ca5-4407-b597-3c01af5faab3
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9192173196797350568}
+        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8426d7c4-a8a5-4ea8-b061-790c44e4affd
+    m_ActionName: Player/Dash[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
