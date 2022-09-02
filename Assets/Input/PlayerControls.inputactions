@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "97a85a06-4ca5-4407-b597-3c01af5faab3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -176,7 +185,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
+                    "name": "down",
                     "id": "b7602cb4-af20-4e48-8df1-9df8e74d4618",
                     "path": "<Keyboard>/s",
                     "interactions": "",
@@ -187,7 +196,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
+                    "name": "down",
                     "id": "217c49e8-84b8-49c0-9dc2-623a6a1b66f4",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
@@ -198,15 +207,15 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "b998490a-de7c-4e9c-87b5-2732ed8f4aca",
+                    "name": "",
+                    "id": "a96b0f53-5f31-48ce-980b-87b40340e278",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Vertical",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         },
