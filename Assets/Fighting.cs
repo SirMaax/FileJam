@@ -87,7 +87,8 @@ public class Fighting : MonoBehaviour
         else
         {
             //Do the pew pew
-            GameObject go = Instantiate(BulletPreFabs[currentWeapon], transform.position, Quaternion.identity); 
+            GameObject go = Instantiate(BulletPreFabs[currentWeapon], transform.position, Quaternion.identity);
+            go.GetComponent<BulletScript>().target = Cursor.ActualMousePos;
         }
         
         canShot = true;

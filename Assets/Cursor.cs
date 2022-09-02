@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class Cursor : MonoBehaviour
 {
     [SerializeField] private float aimRadius;
-    public Vector3 actualMousePos;
+    public static Vector3 ActualMousePos;
     private InputManager _inputManager;
     public GameObject inputmanager;
     // Start is called before the first frame update
@@ -22,13 +22,12 @@ public class Cursor : MonoBehaviour
 
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(_inputManager.aimingMouse);
         mouseWorldPos.z = 0;
-        Debug.Log("mouse is"+ mouseWorldPos);
 
         Vector2 distance = (mouseWorldPos - Movement.Position);
         var temp = Mathf.Clamp(distance.magnitude, 0, aimRadius);
         distance = distance.normalized;
         
-        actualMousePos = Movement.Position + (Vector3)distance * temp;
-        transform.position = actualMousePos;
+       ActualMousePos = Movement.Position + (Vector3)distance * temp;
+        transform.position = ActualMousePos;
     }
 }
