@@ -32,10 +32,14 @@ public class Movement : MonoBehaviour
     [SerializeField] private float rayCastDistance;
 
     [Header("Refs")] 
-    private bool canMove = false;                  
+    private bool canMove = false;
+    private SpriteRenderer spriteRenderer;                  
 
     [Header("OtherStuff")] public int direction = 1; //IN which direciton the player is facing 1 is to the right -1 is to the left
     public static Vector3 Position;
+
+    [SerializeField] Animator animator;
+    Vector3 lastPos;
     
     // Start is called before the first frame update
     void Start()
@@ -45,6 +49,7 @@ public class Movement : MonoBehaviour
         desiredMove = Vector3.zero;
         colliderHeight = GetComponent<BoxCollider2D>().size.y/2;
         colliderWidth = GetComponent<BoxCollider2D>().size.x/2;
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
     }
 
@@ -63,6 +68,12 @@ public class Movement : MonoBehaviour
         }
 
         Move();
+
+        // Sprite Handling
+        spriteRenderer.flipX = direction == 1;
+        lastPos = transform.position;
+        animator.SetFloat("Speed", (Position-lastPos).magnitude);
+
     }
 
     //Get horizontal iNput
