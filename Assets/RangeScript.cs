@@ -20,11 +20,11 @@ public class RangeScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col2){
         if(col2.gameObject.tag == "Player"){
-            if(transform.parent.gameObject.TryGetComponent(out EnemyAi script)){
-                transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(true);
+            if(transform.parent.gameObject.TryGetComponent(out WarCookie script)){
+                transform.parent.gameObject.GetComponent<WarCookie>().setInRange(true);
             }
             else{
-                transform.parent.gameObject.GetComponent<WarCookie>().setInRange(true);
+                transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(true);
             }
             
         }
@@ -32,11 +32,11 @@ public class RangeScript : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col2){
         if(col2.gameObject.tag == "Player"){
-            if(transform.parent.gameObject.TryGetComponent(out EnemyAi script)){
-                transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(false);
+            if(transform.parent.gameObject.TryGetComponent(out WarCookie script)){
+                transform.parent.gameObject.GetComponent<WarCookie>().setInRange(false);
             }
             else{
-                transform.parent.gameObject.GetComponent<WarCookie>().setInRange(false);
+                transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(false);
             }
         }
     }

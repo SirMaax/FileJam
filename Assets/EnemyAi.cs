@@ -46,6 +46,7 @@ public class EnemyAi : MonoBehaviour
         StartCoroutine(ShootCooldown());
 
         GameObject go = Instantiate(bullets[typeOfEnemy],bulletPosition.transform.position,Quaternion.identity);
+        go.GetComponent<SpriteRenderer>().color = Color.cyan;
         BulletScript bs = go.GetComponent<BulletScript>();
         bs.target = Movement2.Position;
         bs.typeOfBullet = 1;
