@@ -123,6 +123,30 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &138382477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4834230041348869690, guid: 13b45fe4d363b5d0ca584b1eca4053f7, type: 3}
+  m_PrefabInstance: {fileID: 4834230041214747319}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &138382485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 138382477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3293ddf54eb05c146a199236f16e5d20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfEnemy: 1
+  healthOfEnemyType: 64000000640000006400000064000000
+  shootCooldown: []
+  bullets: []
+  bulletPosition: {fileID: 0}
+  canShoot: 0
+  inRange: 0
 --- !u!1 &231722750
 GameObject:
   m_ObjectHideFlags: 0
