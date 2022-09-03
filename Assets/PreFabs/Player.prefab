@@ -280,8 +280,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9192173196797350568}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+      - m_Target: {fileID: 830640306340218825}
+        m_TargetAssemblyTypeName: Movement2, Assembly-CSharp
         m_MethodName: Horizontal
         m_Mode: 0
         m_Arguments:
@@ -384,8 +384,8 @@ MonoBehaviour:
     m_ActionName: Player/Vertical[/Keyboard/s,/Keyboard/downArrow,/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9192173196797350568}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+      - m_Target: {fileID: 830640306340218825}
+        m_TargetAssemblyTypeName: Movement2, Assembly-CSharp
         m_MethodName: Jump
         m_Mode: 0
         m_Arguments:
@@ -400,8 +400,8 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 9192173196797350568}
-        m_TargetAssemblyTypeName: Movement, Assembly-CSharp
+      - m_Target: {fileID: 830640306340218825}
+        m_TargetAssemblyTypeName: Movement2, Assembly-CSharp
         m_MethodName: Dash
         m_Mode: 0
         m_Arguments:
