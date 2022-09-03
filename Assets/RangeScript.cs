@@ -20,13 +20,14 @@ public class RangeScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col2){
         if(col2.gameObject.tag == "Player"){
-            transform.parent.GetComponent<EnemyAi>().setInRange(true);
+            transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(true);
         }
     }
 
     void OnTriggerExit2D(Collider2D col2){
         if(col2.gameObject.tag == "Player"){
-            transform.parent.GetComponent<EnemyAi>().setInRange(false);
+            transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(false);
         }
     }
+
 }

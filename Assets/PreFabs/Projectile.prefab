@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 241763661706124987}
   - component: {fileID: 2372305371688466327}
   - component: {fileID: 8531266707678486319}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +51,8 @@ MonoBehaviour:
   maxX: 20
   maxY: 20
   target: {x: 0, y: 0, z: 0}
+  damage: 0
+  typeOfBullet: 0
 --- !u!212 &241763661706124987
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,8 +91,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -259920001
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
