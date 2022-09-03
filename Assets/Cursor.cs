@@ -20,14 +20,14 @@ public class Cursor : MonoBehaviour
     void Update()
     {
 
-        var mouseWorldPos = Camera.main.ScreenToWorldPoint(_inputManager.aimingMouse);
+        var mouseWorldPos = Camera.main.ScreenToWorldPoint(InputManager.aimingMouse);
         mouseWorldPos.z = 0;
 
-        Vector2 distance = (mouseWorldPos - Movement.Position);
+        Vector2 distance = (mouseWorldPos - Movement2.Position);
         var temp = Mathf.Clamp(distance.magnitude, 0, aimRadius);
         distance = distance.normalized;
         
-       ActualMousePos = Movement.Position + (Vector3)distance * temp;
+       ActualMousePos = Movement2.Position + (Vector3)distance * temp;
         transform.position = ActualMousePos;
     }
 }

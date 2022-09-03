@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Wall
+  - Stage
   layers:
   - Default
   - TransparentFX
@@ -47,4 +49,7 @@ TagManager:
     locked: 0
   - name: Actors
     uniqueID: 4035047295
+    locked: 0
+  - name: Cursor
+    uniqueID: 448138117
     locked: 0
