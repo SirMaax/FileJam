@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Stage
   - Bullet
+  - FileManager
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,7 @@ TagManager:
     locked: 0
   - name: Cursor
     uniqueID: 448138117
+    locked: 0
+  - name: UI
+    uniqueID: 778826579
     locked: 0

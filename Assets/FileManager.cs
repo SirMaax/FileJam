@@ -30,5 +30,7 @@ public class FileManager : MonoBehaviour
         }
         word.ResetPos();
     }
-
+    
+    
+    
 }

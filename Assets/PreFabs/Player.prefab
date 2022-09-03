@@ -178,6 +178,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   fileSize: 100
+  strengthOfAttributes:
+  - 0
+  - 0
+  - 0
   ps: {fileID: 8701377630933057663}
   fileSizeMeter: {fileID: 0}
   test1: 0

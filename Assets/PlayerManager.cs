@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,13 +13,16 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float fileSize;
     private float startFileSize;
-    
+
+    [Header("FileAttributesStuff")] 
+    public float[] strengthOfAttributes;
     
     [Header("Refs")] public GameObject ps;
     public GameObject fileSizeMeter;
     private float fileSizeMeterLength;
     private float fileSizeMeterOriginalXPos;
-
+    private FileManager _fileManager;
+    
     [Header("Tes")] public bool test1;
     public bool test2;
     public float testValue;
@@ -25,6 +31,7 @@ public class PlayerManager : MonoBehaviour
         startFileSize = fileSize;
         fileSizeMeterLength = fileSizeMeter.transform.localScale.x;
         fileSizeMeterOriginalXPos = fileSizeMeter.transform.position.x;
+        _fileManager = GameObject.FindWithTag("FileManager").GetComponent<FileManager>();
     }
 
     // Update is called once per frame
@@ -34,12 +41,14 @@ public class PlayerManager : MonoBehaviour
         {
             test1 = false;
             DecreaseFileSize(testValue);
+            CheckAttributeHowStrong();
         }
 
         if (test2)
         {
             test2 = false;
             IncreaseFileSize(testValue);
+            CheckAttributeHowStrong();
         }
     }
     //Is triggered when Particle is pickedu p
@@ -77,13 +86,31 @@ public class PlayerManager : MonoBehaviour
         
         //Move to the left
         Vector3 pos = fileSizeMeter.transform.position;
-        // float temp1 = 1 - (fileSize / startFileSize);
-        // float temp2 = temp1 * 100;
-        // float temp3 = fileSizeMeterLength / 100;
-        // float temp4 = temp3 * temp2;
         float delta = ((fileSizeMeterLength/100) * ((1 - fileSize/ startFileSize) * 100));
         delta /= 2;
         pos.x = fileSizeMeterOriginalXPos - delta;
         fileSizeMeter.transform.position = pos;
+    }
+    
+    //How strong are the attributes
+    private void CheckAttributeHowStrong()
+    {
+        float percent = fileSize / startFileSize;
+        for (int i = 0; i < _fileManager.filePostions.Length; i++)
+        {
+            float n1 = (0.33333333f * (i + 1)) - percent;
+            if (n1 < 0)
+            {
+                strengthOfAttributes[i] = _fileManager.filePostions[i].strengthOfAttribute * 1;
+            }
+            else
+            {
+                float number = (0.33333333f - n1)/0.33333333f; 
+                number = Mathf.Clamp(number,0,1);
+                strengthOfAttributes[i] = _fileManager.filePostions[i].strengthOfAttribute * number;
+
+            }
+        }
+        
     }
 }

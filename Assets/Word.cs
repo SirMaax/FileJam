@@ -1,13 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Word : MonoBehaviour
 {
+    [Header("Type Of Attrbute")]
+    [Description("0 is Speed, 1 is Strength, 2 is Shooti Cooldown")]
+    [Range(0, 2)] [SerializeField] public int typeOfAttribute;
+    [SerializeField] public float strengthOfAttribute;
+    
     // Start is called before the first frame update
     private Vector3 startPosition;
-    
     private Vector2 offset;
     private bool dragging = false;
     private FileManager _fileManager;
