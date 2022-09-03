@@ -1019,6 +1019,7 @@ GameObject:
   - component: {fileID: 739637116}
   - component: {fileID: 739637115}
   - component: {fileID: 739637118}
+  - component: {fileID: 739637119}
   m_Layer: 0
   m_Name: Square (5)
   m_TagString: Untagged
@@ -1140,6 +1141,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &739637119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739637114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227bfe235c492414395d184a7651e240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &843154081
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,7 @@ public class Word : MonoBehaviour
         {        
             Vector2 temp = transform.position;
             offset = InputManager.MousePosition - temp;
+
         }
         transform.position = InputManager.MousePosition - offset ;
     }
@@ -49,9 +50,8 @@ public class Word : MonoBehaviour
     private void OnMouseUp()
     {
         offset = Vector2.zero;
+        _fileManager.Released(this);
         //Check where if it is in there distance ez
-        _fileManager.CheckIfColliderIsTouching(gameObject);
-        dragging = false;
     }
 }
 
