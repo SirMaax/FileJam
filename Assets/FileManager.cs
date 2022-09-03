@@ -23,7 +23,7 @@ public class FileManager : MonoBehaviour
         foreach (var ele in colliders)
         {
             //
-            ele
+            
 
         }
         //Return collider to original pos

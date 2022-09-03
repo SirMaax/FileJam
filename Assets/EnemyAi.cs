@@ -10,6 +10,9 @@ public class EnemyAi : MonoBehaviour
     [Range(0,3)]public int typeOfEnemy;
     public float[] shootCooldown;
     public GameObject[] bullets;
+
+    [Header("Bullet status")] 
+    public GameObject bulletPosition;
 //Distance to next target unitl a new one is picked
     [Header("Status")] public bool canShoot;
     public bool inRange;
@@ -38,7 +41,7 @@ public class EnemyAi : MonoBehaviour
         canShoot = false;
         StartCoroutine(ShootCooldown());
 
-        GameObject go = Instantiate(bullets[typeOfEnemy],transform.position,Quaternion.identity);
+        GameObject go = Instantiate(bullets[typeOfEnemy],bulletPosition.transform.position,Quaternion.identity);
         BulletScript bs = go.GetComponent<BulletScript>();
         bs.target = Movement2.Position;
     }

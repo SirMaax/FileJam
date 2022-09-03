@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject bulletPosition;
     float timePassed;
 
     // Start is called before the first frame update
@@ -46,6 +47,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(1);
         speed = tempSpeed;
         sprite.flipX = !sprite.flipX;
+        bulletPosition.transform.localPosition *= new Vector2(-1, 1);
 
     }
 
