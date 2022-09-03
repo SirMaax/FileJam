@@ -18,14 +18,26 @@ public class TurnDetection : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col){
 
-        if(col.gameObject.tag == "Wall")
-            transform.parent.GetComponent<Enemy>().turn();
+        if(col.gameObject.tag == "Wall"){
+            if(transform.parent.gameObject.TryGetComponent(out Enemy script)){
+                transform.parent.gameObject.GetComponent<Enemy>().turn();
+            }
+            else{
+                transform.parent.gameObject.GetComponent<WarCookie>().turn();
+            }
+        }
         
     }
 
     void OnTriggerExit2D(Collider2D col){
-        if(col.gameObject.tag == "Stage")
-            transform.parent.GetComponent<Enemy>().turn();
+        if(col.gameObject.tag == "Stage"){
+            if(transform.parent.gameObject.TryGetComponent(out Enemy script)){
+                transform.parent.gameObject.GetComponent<Enemy>().turn();
+            }
+            else{
+                transform.parent.gameObject.GetComponent<WarCookie>().turn();
+            }
+        }
     }
 
 }

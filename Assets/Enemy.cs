@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     {
         body.MovePosition(body.position + Vector2.right * speed);
         anim.SetFloat("speed", Math.Abs(speed));
-        if(Time.fixedTime - timePassed > 2 && speed > 0){
+        if(Time.fixedTime - timePassed > 2 && Math.Abs(speed) > 0){
              turn();
         }
     }

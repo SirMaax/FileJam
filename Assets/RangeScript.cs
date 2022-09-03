@@ -5,11 +5,11 @@ using UnityEngine;
 public class RangeScript : MonoBehaviour
 {   
 
-    private CircleCollider2D col;
+    [SerializeField] Collider2D col;
     // Start is called before the first frame update
     void Start()
     {
-        col = GetComponent<CircleCollider2D>();
+
     }
 
     // Update is called once per frame
@@ -20,13 +20,24 @@ public class RangeScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col2){
         if(col2.gameObject.tag == "Player"){
-            transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(true);
+            if(transform.parent.gameObject.TryGetComponent(out EnemyAi script)){
+                transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(true);
+            }
+            else{
+                transform.parent.gameObject.GetComponent<WarCookie>().setInRange(true);
+            }
+            
         }
     }
 
     void OnTriggerExit2D(Collider2D col2){
         if(col2.gameObject.tag == "Player"){
-            transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(false);
+            if(transform.parent.gameObject.TryGetComponent(out EnemyAi script)){
+                transform.parent.gameObject.GetComponent<EnemyAi>().setInRange(false);
+            }
+            else{
+                transform.parent.gameObject.GetComponent<WarCookie>().setInRange(false);
+            }
         }
     }
 
