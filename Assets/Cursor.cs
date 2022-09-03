@@ -22,8 +22,8 @@ public class Cursor : MonoBehaviour
     {
 
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(InputManager.aimingMouse);
-        mouseWorldPos.z = 0;
-        WereMouseIsPointed = mouseWorldPos;
+        mouseWorldPos.z = 0; 
+        mouseWorldPos = InputManager.MousePosition;
         Vector2 distance = (mouseWorldPos - Movement2.Position);
         var temp = Mathf.Clamp(distance.magnitude, 0, aimRadius);
         distance = distance.normalized;
