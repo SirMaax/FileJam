@@ -6,25 +6,21 @@ using UnityEngine.InputSystem;
 
 public class Fighting : MonoBehaviour
 {
-    [Header("Current Weapon")] 
-    public int currentWeapon;
+    [Header("Current Weapon")] public int currentWeapon;
     public bool canShot;
-    
 
-    [Header("Weapon1")]
-    public bool charging = false;
+
+    [Header("Weapon1")] public bool charging = false;
     public double chargeBegin;
     [SerializeField] private float chargeTime1;
     [SerializeField] private float chargeTime2;
-    [Header("WeaponInfo")] 
-    public int[] dmgList;
+    [Header("WeaponInfo")] public int[] dmgList;
     public float[] Cooldown;
     public GameObject[] BulletPreFabs;
-    
+
     [Header("Refs")] private PolygonCollider2D collider;
-    
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,7 +58,8 @@ public class Fighting : MonoBehaviour
             {
                 //HeavyBlow
                 Debug.Log("heavyblow");
-            }else if (timeCharged >= chargeTime1)
+            }
+            else if (timeCharged >= chargeTime1)
             {
                 //LightBlow
                 Debug.Log("lightBlow");
@@ -73,12 +70,10 @@ public class Fighting : MonoBehaviour
                 charging = false;
                 Debug.Log("no blow");
                 return;
-                
             }
-            
         }
         else if (context.performed || context.canceled) return;
-        
+
         if (currentWeapon == 0)
         {
             charging = true;
@@ -90,14 +85,15 @@ public class Fighting : MonoBehaviour
             GameObject go = Instantiate(BulletPreFabs[currentWeapon], transform.position, Quaternion.identity);
             go.GetComponent<BulletScript>().target = Cursor.ActualMousePos;
         }
-        
+
         canShot = true;
         StartCoroutine(WeaponCooldown());
     }
 
-    private void Rotate(){
-    transform.right = (Vector3) InputManager.aimingMouse - transform.position;
-    
-    }
+    private void Rotate()
+    {
+        // transform.right = (Vector3)InputManager.aimingMouse - transform.position;
+        transform.right = Cursor.ActualMousePos - transform.position;
 
+    }
 }
