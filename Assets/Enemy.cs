@@ -8,7 +8,10 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] Rigidbody2D body; 
     [SerializeField] float speed;
+    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] Animator anim;
     float timePassed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +22,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         body.MovePosition(body.position + Vector2.right * speed);
-        if(Time.fixedTime - timePassed > 2){
-             timePassed = Time.fixedTime;
-             speed *= -1;
+        anim.SetFloat("speed", Math.Abs(speed));
+        if(Time.fixedTime - timePassed > 2 && speed > 0){
+             turn();
         }
     }
 
@@ -30,5 +33,21 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("took dmg");
     }
+
+    public void turn(){
+        timePassed = Time.fixedTime;
+        speed *= -1;
+        StartCoroutine(turnWait());
+    }
+
+    private IEnumerator turnWait(){
+        float tempSpeed = speed;
+        speed = 0;
+        yield return new WaitForSeconds(1);
+        speed = tempSpeed;
+        sprite.flipX = !sprite.flipX;
+
+    }
+
 
 }

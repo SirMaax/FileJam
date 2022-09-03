@@ -47,15 +47,16 @@ public class Movement2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Position = transform.position;
         if (!canMove) return;
         GroundCheck();
         Move();
         JumpDurationCheck();
         
-        Position = transform.position;
         // Sprite Handling
         spriteRenderer.flipX = direction == 1;
         lastPos = transform.position;
+        Debug.Log((Position - lastPos).magnitude);
         animator.SetFloat("Speed", (Position - lastPos).magnitude);
     }
 

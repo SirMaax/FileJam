@@ -12,6 +12,7 @@ public class EnemyAi : MonoBehaviour
     public GameObject[] bullets;
 //Distance to next target unitl a new one is picked
     [Header("Status")] public bool canShoot;
+    public bool inRange;
     void Start()
     {
         
@@ -33,7 +34,7 @@ public class EnemyAi : MonoBehaviour
 
     private void Shoot()
     {
-        if (!canShoot) return;
+        if (!canShoot || !inRange) return;
         canShoot = false;
         StartCoroutine(ShootCooldown());
 
@@ -47,6 +48,12 @@ public class EnemyAi : MonoBehaviour
         yield return new WaitForSeconds(shootCooldown[typeOfEnemy]);
         canShoot = true;
     }
+
+    public void setInRange(bool inRange){
+        this.inRange = inRange;
+    }
+
+
 
     
 }
