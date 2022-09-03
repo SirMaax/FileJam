@@ -39,7 +39,7 @@ public class EnemyAi : MonoBehaviour
 
         GameObject go = Instantiate(bullets[typeOfEnemy],transform.position,Quaternion.identity);
         BulletScript bs = go.GetComponent<BulletScript>();
-        bs.target = Movement.Position;
+        bs.target = Movement2.Position;
     }
 
     private IEnumerator ShootCooldown()

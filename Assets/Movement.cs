@@ -108,9 +108,9 @@ public class Movement : MonoBehaviour
     {
         if (grounded) return;
 
-       Vector3 newPos = Physics2D.ClosestPoint(transform.position, ray.collider);
-       newPos.y += colliderHeight;
-       transform.position = newPos;
+       // Vector3 newPos = Physics2D.ClosestPoint(transform.position, ray.collider);
+       // newPos.y += colliderHeight;
+       // transform.position = newPos;
 
         // //Set the height correct
         // float newYPos = ray.transform.position.y + colliderHeight;
@@ -151,7 +151,7 @@ public class Movement : MonoBehaviour
             timeJumped = Time.time;
             desiredMove.y = jumpForce;
         }
-        if(context.canceled)
+        if(context.canceled && jumping)
         {
             EndOfJump();
         }
@@ -169,7 +169,7 @@ public class Movement : MonoBehaviour
     //Checks if the player is allowed to jump. Including coyote time
     private bool CanJump()
     {
-        if (grounded || jumping) return true;
+        if (grounded) return true;
         return false;
     }
 

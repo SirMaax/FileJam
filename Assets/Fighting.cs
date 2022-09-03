@@ -93,7 +93,6 @@ public class Fighting : MonoBehaviour
         
         canShot = true;
         StartCoroutine(WeaponCooldown());
-        Debug.Log("shots");
     }
 
     private void Rotate(){
