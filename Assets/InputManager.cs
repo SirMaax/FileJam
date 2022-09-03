@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     public static Vector2 aimingMouse;
+
+    public static Vector2 MousePosition;
     // Update is called once per frame
     void Update()
     {
@@ -20,7 +22,7 @@ public class InputManager : MonoBehaviour
                 
             }
             aimingMouse = context.ReadValue<Vector2>();
-            
+            MousePosition = Camera.main.ScreenToWorldPoint(InputManager.aimingMouse);
         }
         
 }
