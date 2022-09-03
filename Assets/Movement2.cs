@@ -56,7 +56,6 @@ public class Movement2 : MonoBehaviour
         // Sprite Handling
         spriteRenderer.flipX = direction == 1;
         lastPos = transform.position;
-        Debug.Log((Position - lastPos).magnitude);
         animator.SetFloat("Speed", (Position - lastPos).magnitude);
     }
 

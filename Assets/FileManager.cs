@@ -20,7 +20,7 @@ public class FileManager : MonoBehaviour
         {
             if (ele.GetComponent<BoxCollider2D>().bounds.Contains(InputManager.MousePosition))
             {
-                filePostions[ele.GetComponent<TargetWord>().position] = word;
+                filePostions[ele.GetComponent<TargetWord2>().position] = word;
                 var temp = ele.transform.position;
                 temp.z -= 1;
                 word.gameObject.transform.position = temp;
