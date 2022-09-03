@@ -35,7 +35,7 @@ public class EvilCursor : MonoBehaviour
             charging = true;
             body.velocity = Vector2.zero;
             yield return new WaitForSeconds(2);
-            children[1].GetComponent<SpriteRenderer>().color = Color.blue;
+            children[1].GetComponent<SpriteRenderer>().color = Color.cyan;
             yield return new WaitForSeconds(0.5f);
             children[1].GetComponent<SpriteRenderer>().color = Color.white;
             playerPos = Movement2.Position;

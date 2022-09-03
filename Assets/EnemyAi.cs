@@ -30,6 +30,7 @@ public class EnemyAi : MonoBehaviour
     {
 
         if (typeOfEnemy == 0) Enemy1();
+        else if (typeOfEnemy == 3) Enemy4();
         
     }
 
@@ -39,6 +40,9 @@ public class EnemyAi : MonoBehaviour
         Shoot();
     }
 
+    private void Enemy4(){
+        Shoot();
+    }
     private void Shoot()
     {
         if (!canShoot || !inRange) return;
@@ -46,6 +50,7 @@ public class EnemyAi : MonoBehaviour
         StartCoroutine(ShootCooldown());
 
         GameObject go = Instantiate(bullets[typeOfEnemy],bulletPosition.transform.position,Quaternion.identity);
+        go.transform.right = Movement2.Position - go.transform.position;
         go.GetComponent<SpriteRenderer>().color = Color.cyan;
         BulletScript bs = go.GetComponent<BulletScript>();
         bs.target = Movement2.Position;
