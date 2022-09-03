@@ -9,6 +9,10 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private float maxX;
     [SerializeField] private float maxY;
     public Vector3 target;
+    public int damage;
+
+    // 0 Player Bullet; 1 Enemy Bullet
+    public int typeOfBullet;
     void Start()
     {
         Vector3 direction = target - transform.position;
@@ -25,4 +29,5 @@ public class BulletScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 }
