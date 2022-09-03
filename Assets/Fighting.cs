@@ -34,7 +34,7 @@ public class Fighting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Rotate();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -96,6 +96,9 @@ public class Fighting : MonoBehaviour
         Debug.Log("shots");
     }
 
+    private void Rotate(){
+    transform.right = (Vector3) InputManager.aimingMouse - transform.position;
     
+    }
 
 }

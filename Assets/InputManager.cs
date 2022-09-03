@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public Vector2 aimingMouse;
+    public static Vector2 aimingMouse;
     // Update is called once per frame
     void Update()
     {

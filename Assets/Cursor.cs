@@ -20,7 +20,7 @@ public class Cursor : MonoBehaviour
     void Update()
     {
 
-        var mouseWorldPos = Camera.main.ScreenToWorldPoint(_inputManager.aimingMouse);
+        var mouseWorldPos = Camera.main.ScreenToWorldPoint(InputManager.aimingMouse);
         mouseWorldPos.z = 0;
 
         Vector2 distance = (mouseWorldPos - Movement.Position);
