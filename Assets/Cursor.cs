@@ -20,15 +20,25 @@ public class Cursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PlayerManager.fileOpen)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
 
-        var mouseWorldPos = Camera.main.ScreenToWorldPoint(InputManager.aimingMouse);
-        mouseWorldPos.z = 0; 
-        mouseWorldPos = InputManager.MousePosition;
-        Vector2 distance = (mouseWorldPos - Movement2.Position);
-        var temp = Mathf.Clamp(distance.magnitude, 0, aimRadius);
-        distance = distance.normalized;
+            var mouseWorldPos = Camera.main.ScreenToWorldPoint(InputManager.aimingMouse);
+            mouseWorldPos.z = 0; 
+            mouseWorldPos = InputManager.MousePosition;
+            Vector2 distance = (mouseWorldPos - Movement2.Position);
+            var temp = Mathf.Clamp(distance.magnitude, 0, aimRadius);
+            distance = distance.normalized;
         
-       ActualMousePos = Movement2.Position + (Vector3)distance * temp;
-        transform.position = ActualMousePos;
+            ActualMousePos = Movement2.Position + (Vector3)distance * temp;
+            transform.position = ActualMousePos;
+        }
+
+        
     }
 }

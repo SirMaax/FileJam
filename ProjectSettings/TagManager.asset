@@ -9,7 +9,11 @@ TagManager:
   - Stage
   - Bullet
   - FileManager
+<<<<<<< HEAD
   - FloatieSpawner
+=======
+  - Sound
+>>>>>>> main
   layers:
   - Default
   - TransparentFX

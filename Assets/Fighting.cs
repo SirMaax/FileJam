@@ -53,6 +53,8 @@ public class Fighting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         Flip();
         Rotate();
         UpdateFileValues();
@@ -81,6 +83,8 @@ public class Fighting : MonoBehaviour
 
     public void Shot(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         if (!canShot) return;
         if (context.canceled && canShot && charging)
         {
@@ -93,12 +97,16 @@ public class Fighting : MonoBehaviour
                 collider.enabled = true;
                 StartCoroutine(DisableCollider());
                 ResetRotation();
+                GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(1);
+
                 return;
             }
             else if (timeCharged >= chargeTime1)
             {
                 //LightBlow
                 blow = 1;
+                GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(1);
+
                 Debug.Log("lightBlow");
                 ResetRotation();
                 StartCoroutine(DisableCollider());
@@ -125,6 +133,7 @@ public class Fighting : MonoBehaviour
         else
         {
             //Do the pew pew
+            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(0);
             GameObject go = Instantiate(BulletPreFabs[currentWeapon], transform.position, Quaternion.identity);
             go.GetComponent<BulletScript>().target = Cursor.ActualMousePos;
             go.GetComponent<BulletScript>().damage = dmgList[currentWeapon] + extraDmg;
@@ -138,7 +147,8 @@ public class Fighting : MonoBehaviour
     private void Rotate()
     {
         
-        
+        if (PlayerManager.fileOpen) return;
+
         // transform.right = (Vector3)InputManager.aimingMouse - transform.position;
        thisRotation = Cursor.ActualMousePos - transform.position;
        Vector3 test = transform.rotation * extraRot;
@@ -185,6 +195,8 @@ public class Fighting : MonoBehaviour
 
     public void SwitchWeapon(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         if (context.performed)
         {
             currentWeapon = currentWeapon == 0 ? 1 : 0;

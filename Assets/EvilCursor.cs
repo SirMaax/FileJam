@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EvilCursor : MonoBehaviour
 {   
@@ -27,11 +29,20 @@ public class EvilCursor : MonoBehaviour
             transform.rotation *= Quaternion.AngleAxis(spinValue , new Vector3(0, 0, 1));
             children[0].parent = transform;
         }
+     
 
     }
 
     private IEnumerator changePhases(){
-        while(true){
+        while(true)
+        {
+            // var rot = transform.rotation;
+            // Vector3 rot2 = rot.eulerAngles;
+            // rot2.x = 0;
+            // rot2.y = 0;
+            // transform.rotation = quaternion.Euler(rot2);
+            // transform.GetChild(0).transform.rotation = Quaternion.identity;
+            
             charging = true;
             body.velocity = Vector2.zero;
             yield return new WaitForSeconds(2);
@@ -44,6 +55,8 @@ public class EvilCursor : MonoBehaviour
             transform.right = Movement2.Position - transform.position;
             children[0].parent = transform;
             body.AddForce( (playerPos - transform.position) * (force + Random.Range(-8, 16))) ;
+            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(14);
+
             yield return new WaitForSeconds(1);
         }
     }
