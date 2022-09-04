@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("FileAttributesStuff")] public float[] strengthOfAttributes;
     public int[] typeOfAttribut;
-
+    public static bool fileOpen = false;
     [Header("Refs")] public GameObject ps;
     public GameObject fileSizeMeter;
     private float fileSizeMeterLength;
@@ -28,7 +28,8 @@ public class PlayerManager : MonoBehaviour
     [Header("Tes")] public bool test1;
     public bool test2;
     public float testValue;
-
+    
+    
     void Start()
     {
         startFileSize = fileSize;
@@ -36,7 +37,7 @@ public class PlayerManager : MonoBehaviour
         fileSizeMeterOriginalXPos = fileSizeMeter.transform.position.x;
         _fileManager = GameObject.FindWithTag("FileManager").GetComponent<FileManager>();
         CheckAttributeHowStrong();
-
+        fileOpen = false;
     }
 
     // Update is called once per frame
@@ -182,5 +183,15 @@ public class PlayerManager : MonoBehaviour
     {
         GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(5);
 
+    }
+
+    public void OpenFile(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            fileOpen = !fileOpen;
+            //Open file
+            Debug.Log(fileOpen);
+        }
     }
 }

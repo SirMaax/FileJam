@@ -53,6 +53,8 @@ public class Fighting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         Flip();
         Rotate();
         UpdateFileValues();
@@ -81,6 +83,8 @@ public class Fighting : MonoBehaviour
 
     public void Shot(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         if (!canShot) return;
         if (context.canceled && canShot && charging)
         {
@@ -143,7 +147,8 @@ public class Fighting : MonoBehaviour
     private void Rotate()
     {
         
-        
+        if (PlayerManager.fileOpen) return;
+
         // transform.right = (Vector3)InputManager.aimingMouse - transform.position;
        thisRotation = Cursor.ActualMousePos - transform.position;
        Vector3 test = transform.rotation * extraRot;
@@ -190,6 +195,8 @@ public class Fighting : MonoBehaviour
 
     public void SwitchWeapon(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         if (context.performed)
         {
             currentWeapon = currentWeapon == 0 ? 1 : 0;

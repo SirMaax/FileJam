@@ -71,6 +71,8 @@ public class Movement2 : MonoBehaviour
     //Get horizontal iNput
     public void Horizontal(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         horizontal = context.ReadValue<Vector2>();
         lastDirection = direction;
         if (horizontal.x < 0) direction = -1;
@@ -169,6 +171,8 @@ public class Movement2 : MonoBehaviour
     
     public void Jump(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         if (context.started)
         {
             GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(6);
@@ -223,6 +227,8 @@ public class Movement2 : MonoBehaviour
     
     public void Dash(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         if (context.started)
         {
             if (!CanDash()) return; //Coyote Time

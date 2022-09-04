@@ -79,6 +79,7 @@ public class Movement : MonoBehaviour
     //Get horizontal iNput
     public void Horizontal(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
         horizontal = context.ReadValue<Vector2>();
         if (horizontal.x < 0) direction = -1;
         else if (horizontal.x > 0) direction = 1;
@@ -87,6 +88,8 @@ public class Movement : MonoBehaviour
     //Get vertical Input
     public void Vertical(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         vertical = context.ReadValue<Vector2>();
     }
 
@@ -142,6 +145,8 @@ public class Movement : MonoBehaviour
     //What Happens when the player triggers the jump
     public void Jump(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         if (context.started)
         {
             if (!CanJump()) return; //Coyote Time
@@ -209,6 +214,8 @@ public class Movement : MonoBehaviour
 
     public void Dash(InputAction.CallbackContext context)
     {
+        if (PlayerManager.fileOpen) return;
+
         if (context.started)
         {
             if (!CanDash()) return; //Coyote Time
