@@ -110,7 +110,6 @@ public class PlayerManager : MonoBehaviour
             if (n1 < 0)
             {
                 strengthOfAttributes[i] = _fileManager.filePostions[i].strengthOfAttribute * 1;
-                typeOfAttribut[i] = _fileManager.filePostions[i].typeOfAttribute;
             }
             else
             {
@@ -119,6 +118,8 @@ public class PlayerManager : MonoBehaviour
                 strengthOfAttributes[i] = _fileManager.filePostions[i].strengthOfAttribute * number;
                 
             }
+            typeOfAttribut[i] = _fileManager.filePostions[i].typeOfAttribute;
+
         }
     }
 

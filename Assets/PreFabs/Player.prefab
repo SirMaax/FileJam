@@ -82,12 +82,14 @@ MonoBehaviour:
   dmgList: 000000000000000000000000
   Cooldown:
   - 0
-  - 0
+  - 1
   - 0
   BulletPreFabs:
   - {fileID: 0}
   - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
   - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
+  minusCoolDown: 0
+  perCentageCooldown: 0
 --- !u!1 &9192173196797350575
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +166,7 @@ MonoBehaviour:
   dashForce: 1500
   dashCoolDown: 1.3
   timeAfterDashWithoutXInput: 0.1
+  extraSpeed: 0
 --- !u!114 &2643779444390865049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +185,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  typeOfAttribut: 
   ps: {fileID: 8701377630933057663}
   fileSizeMeter: {fileID: 0}
   test1: 0

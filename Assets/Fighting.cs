@@ -19,18 +19,21 @@ public class Fighting : MonoBehaviour
     public GameObject[] BulletPreFabs;
 
     [Header("Refs")] private PolygonCollider2D collider;
-
-
+    private PlayerManager _playerManager;
+    [Header("ExtraInforo")] public float minusCoolDown;
+    public float perCentageCooldown;
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<PolygonCollider2D>();
+        _playerManager = transform.parent.GetComponent<PlayerManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Rotate();
+        UpdateFileValues();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -44,7 +47,7 @@ public class Fighting : MonoBehaviour
 
     IEnumerator WeaponCooldown()
     {
-        yield return new WaitForSeconds(Cooldown[currentWeapon]);
+        yield return new WaitForSeconds(Cooldown[currentWeapon] - perCentageCooldown);
         canShot = true;
     }
 
@@ -88,7 +91,7 @@ public class Fighting : MonoBehaviour
             go.GetComponent<BulletScript>().typeOfBullet = 0;
         }
 
-        canShot = true;
+        canShot = false;
         StartCoroutine(WeaponCooldown());
     }
 
@@ -97,5 +100,13 @@ public class Fighting : MonoBehaviour
         // transform.right = (Vector3)InputManager.aimingMouse - transform.position;
         transform.right = Cursor.ActualMousePos - transform.position;
 
+    }
+
+    private void UpdateFileValues()
+    {
+        minusCoolDown = _playerManager.GetCooldownIncrease();
+        float percentage = (Cooldown[currentWeapon] / 100) * minusCoolDown;
+        perCentageCooldown = percentage;
+        
     }
 }
