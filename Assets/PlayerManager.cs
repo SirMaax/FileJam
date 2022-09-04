@@ -33,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     
     void Start()
     {
+        
         startFileSize = fileSize;
         fileSizeMeterLength = fileSizeMeter.transform.localScale.x;
         fileSizeMeterOriginalXPos = fileSizeMeter.transform.position.x;
@@ -110,7 +111,12 @@ public class PlayerManager : MonoBehaviour
         if (_fileManager == null) return;
         for (int i = 0; i < _fileManager.filePostions.Length; i++)
         {
-            if (_fileManager.filePostions[i] == null) continue;
+            if (_fileManager.filePostions[i] == null)
+            {
+                strengthOfAttributes[i] = 0;
+                continue;
+                
+            };
             float n1 = (0.33333333f * (i + 1)) - percent;
             if (n1 < 0)
             {
@@ -193,6 +199,7 @@ public class PlayerManager : MonoBehaviour
         if (context.started)
         {
             fileOpen = !fileOpen;
+            GameObject.FindWithTag("FileManager").GetComponent<FileManager>().Show(fileOpen);
             //Open file
             Debug.Log(fileOpen);
         }

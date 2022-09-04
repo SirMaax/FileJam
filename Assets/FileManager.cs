@@ -16,7 +16,13 @@ public class FileManager : MonoBehaviour
         {
             GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(11);
 
-            if (ele.GetComponent<BoxCollider2D>().bounds.Contains(InputManager.MousePosition))
+            BoxCollider2D col = ele.GetComponent<BoxCollider2D>();
+            if(InputManager.MousePosition.x < col.bounds.center.x + col.bounds.size.x 
+               && InputManager.MousePosition.x > col.bounds.center.x - col.bounds.size.x
+               && InputManager.MousePosition.y < col.bounds.center.y + col.bounds.size.y
+               && InputManager.MousePosition.y > col.bounds.center.y - col.bounds.size.y)
+                
+            // if (ele.GetComponent<BoxCollider2D>().bounds.Contains(InputManager.MousePosition)) ;
             {
                 for (int i = 0; i < filePostions.Length; i++)
                 {
@@ -51,5 +57,15 @@ public class FileManager : MonoBehaviour
         }
        
         word.ResetPos();
+    }
+
+    public void Show(bool yesorno)
+    {
+        transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = yesorno;
+        GetComponent<SpriteRenderer>().enabled = yesorno;
+        transform.GetChild(3).GetChild(0).GetComponent<SpriteRenderer>().enabled = yesorno;
+        transform.GetChild(3).GetChild(1).GetComponent<SpriteRenderer>().enabled = yesorno;
+        transform.GetChild(3).GetChild(2).GetComponent<SpriteRenderer>().enabled = yesorno;
+
     }
 }

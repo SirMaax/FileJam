@@ -10084,7 +10084,7 @@ MonoBehaviour:
   animator: {fileID: 3302373827990128029}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   rayCastDistance: 0.55
   width: 0.3
   gravityAmplifier: 0

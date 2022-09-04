@@ -45,7 +45,6 @@ public class BGFloatieSpawner : MonoBehaviour
             newFloatie.GetComponent<Floatie>().speed = RandomGaussian(minSpeed, maxSpeed);
 
             yield return new WaitForSeconds(RandomGaussian(spawnSpeedMin, spawnSpeedMax));
-            Debug.Log("Spawned Floaty");
 
         }
     }
