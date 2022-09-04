@@ -103,6 +103,7 @@ public class PlayerManager : MonoBehaviour
     private void CheckAttributeHowStrong()
     {
         float percent = fileSize / startFileSize;
+        if (_fileManager == null) return;
         for (int i = 0; i < _fileManager.filePostions.Length; i++)
         {
             if (_fileManager.filePostions[i] == null) continue;

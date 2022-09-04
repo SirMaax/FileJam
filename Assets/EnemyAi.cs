@@ -79,7 +79,6 @@ public class EnemyAi : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col2){
-        Debug.Log("Collided");
         if(col2.gameObject.tag == "Bullet"){
             if(col2.GetComponent<BulletScript>().typeOfBullet == 0){
                 Destroy(col2.gameObject);
