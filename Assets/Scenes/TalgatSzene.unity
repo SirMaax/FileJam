@@ -1399,11 +1399,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9221781311059925860, guid: 413e2789e0678704da509be2bedde56b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.83
+      value: 1.96
       objectReference: {fileID: 0}
     - target: {fileID: 9221781311059925860, guid: 413e2789e0678704da509be2bedde56b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.25
+      value: -8.13
       objectReference: {fileID: 0}
     - target: {fileID: 9221781311059925860, guid: 413e2789e0678704da509be2bedde56b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1816,6 +1816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 706544861}
   - component: {fileID: 706544860}
+  - component: {fileID: 706544862}
   m_Layer: 0
   m_Name: FloppyHPBar
   m_TagString: Untagged
@@ -1890,6 +1891,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &706544862
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706544859}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.03125, y: 0.5}
+    newSize: {x: 0.03125, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.03125, y: 0.5}
+  m_EdgeRadius: 0
 --- !u!4 &767967634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 947652099090330917, guid: 0eb8719f4af33044e80872f4c62fc55e, type: 3}
@@ -1937,6 +1964,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1921689378}
   healthMeter: {fileID: 706544859}
+  healthMeterLength2: 0.1
 --- !u!212 &927080145
 SpriteRenderer:
   m_ObjectHideFlags: 0

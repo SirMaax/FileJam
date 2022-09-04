@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     public static bool fileOpen = false;
     [Header("Refs")] public GameObject ps;
     public GameObject fileSizeMeter;
-    private float fileSizeMeterLength;
+    public float fileSizeMeterLength;
     private float fileSizeMeterOriginalXPos;
     private FileManager _fileManager;
 

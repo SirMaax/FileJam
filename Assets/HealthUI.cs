@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HealthUI : MonoBehaviour
 {
+    [SerializeField] float test;
+
     // Start is called before the first frame update
     [SerializeField] GameObject player;
     [SerializeField] GameObject healthMeter;
@@ -13,13 +15,15 @@ public class HealthUI : MonoBehaviour
     private float healthMeterOriginalXPos;
 
     private float healthMeterLength;
+    public float healthMeterLength2;
+
     private float startLength;
     void Start()
     {
         healthMeterLength = healthMeter.transform.localScale.x;
         startPlayerHealth = playerHealth = player.GetComponent<PlayerManager>().health;
         healthMeterOriginalXPos  = healthMeter.transform.position.x;
-
+        healthMeterLength2 = healthMeter.GetComponent<BoxCollider2D>().bounds.extents.x * 2;
     }
 
     // Update is called once per frame
@@ -38,7 +42,7 @@ public class HealthUI : MonoBehaviour
 
         //Move to the left
         Vector3 pos = healthMeter.transform.position;
-        float delta = ((healthMeterLength / 100) * ((1 - playerHealth / startPlayerHealth) * 100));
+        float delta = ((healthMeterLength2 / 100) * ((1 - playerHealth / startPlayerHealth) * test));
         delta /= 2;
         pos.x = healthMeterOriginalXPos - delta;
         healthMeter.transform.position = pos;
