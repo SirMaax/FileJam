@@ -86,9 +86,10 @@ GameObject:
   - component: {fileID: 6735082213023974504}
   - component: {fileID: 6735082213023974511}
   - component: {fileID: 6735082213023974510}
+  - component: {fileID: 7510748227267512555}
   m_Layer: 8
   m_Name: WarCookie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,12 +256,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfEnemy: 1
-  healthOfEnemyType: 64000000640000006400000064000000
-  shootCooldown: []
-  bullets: []
+  healthOfEnemyType:
+  - 100
+  - 50
+  - 200
+  shootCooldown:
+  - 2
+  - 0
+  - 1
+  bullets:
+  - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
+  - {fileID: 0}
+  - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
   bulletPosition: {fileID: 0}
   canShoot: 0
   inRange: 0
+  health: 0
+--- !u!58 &7510748227267512555
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6735082213023974518}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &6735082213284891997
 GameObject:
   m_ObjectHideFlags: 0

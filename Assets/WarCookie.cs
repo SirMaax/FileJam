@@ -52,7 +52,6 @@ public class WarCookie : MonoBehaviour
             }
 
         }
-        Debug.Log(speed);
         anim.SetFloat("speed", Mathf.Abs(speed));
 
     }

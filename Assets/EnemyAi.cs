@@ -90,10 +90,20 @@ public class EnemyAi : MonoBehaviour
     }
 
     private IEnumerator showDamageFeedback(){
+        if (typeOfEnemy == 2)
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+        }else
+        {
         GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().color = Color.white;
+            
+        }
         if(health < 0)            die();
+
     }
 
 
