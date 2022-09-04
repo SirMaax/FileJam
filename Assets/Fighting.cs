@@ -40,6 +40,10 @@ public class Fighting : MonoBehaviour
 
     public int test2;
 
+    public Sprite gun1;
+    public Sprite gun2;
+    public GameObject gun;
+
     public bool[] bools;
     // Start is called before the first frame update
     void Start()
@@ -77,7 +81,9 @@ public class Fighting : MonoBehaviour
 
     IEnumerator WeaponCooldown()
     {
+        gun.GetComponent<SpriteRenderer>().sprite = gun2;
         yield return new WaitForSeconds(Cooldown[currentWeapon] - perCentageCooldown);
+        gun.GetComponent<SpriteRenderer>().sprite = gun1;
         canShot = true;
     }
 

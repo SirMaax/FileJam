@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [Header("PlayerINfo")] [SerializeField]
-    private float health;
+    public float health;
 
     [SerializeField] private float fileSize;
     private float startFileSize;
@@ -29,11 +29,13 @@ public class PlayerManager : MonoBehaviour
     [Header("Tes")] public bool test1;
     public bool test2;
     public float testValue;
+
+    private float startHealth;
     
     
     void Start()
     {
-        
+        startHealth = health;
         startFileSize = fileSize;
         fileSizeMeterLength = fileSizeMeter.transform.localScale.x;
         fileSizeMeterOriginalXPos = fileSizeMeter.transform.position.x;
@@ -69,6 +71,7 @@ public class PlayerManager : MonoBehaviour
         ps.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         ps.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
         IncreaseFileSize(10f);
+        TakeHealth();
     }
 
     //Decreases fileSize by x percent
@@ -180,6 +183,12 @@ public class PlayerManager : MonoBehaviour
         return -1;
     }
 
+
+    public void TakeHealth()
+    {
+        if(health < startHealth)
+            health += 1;
+    }
     public void TakeDmg()
     {
         GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(2);
