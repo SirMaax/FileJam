@@ -9,7 +9,6 @@ public class WarCookie : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] Animator anim;
-    [SerializeField] GameObject player;
     float timePassed;
     bool inRange;
     bool grounded;
@@ -38,13 +37,13 @@ public class WarCookie : MonoBehaviour
                 turn();
         }
         else{
-            float delta = Mathf.MoveTowards(body.position.x, player.transform.position.x, Mathf.Abs(speed));
+            float delta = Mathf.MoveTowards(body.position.x, Movement2.Position.x, Mathf.Abs(speed));
             body.MovePosition(new Vector2(delta, body.position.y));
-            if(player.transform.position.y > body.position.y +0.1 && grounded){
+            if(Movement2.Position.y > body.position.y +0.1 && grounded){
                 body.AddForce(Vector2.up * 1000);
                 
             }
-            if(player.transform.position.x > body.position.x){
+            if(Movement2.Position.x > body.position.x){
                 speed = Mathf.Abs(speed);
             }
             else{
