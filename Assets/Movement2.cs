@@ -13,7 +13,7 @@ public class Movement2 : MonoBehaviour
     [SerializeField] private float slowDown;
     [SerializeField] private float maxXSpeed;
     [SerializeField] private float maxYSpeed;
-
+    private float startmaxXSpeed;
     [Header("CharacterStatus")] 
     public bool jumping;
     public bool grounded;
@@ -42,11 +42,14 @@ public class Movement2 : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         originalGravity = rb.gravityScale;
+        _playerManager = GetComponent<PlayerManager>();
+        startmaxXSpeed = maxXSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateFileValues();
         if (!canMove) return;
         GroundCheck();
         Move();
@@ -199,7 +202,6 @@ public class Movement2 : MonoBehaviour
         if (jumping && timeJumped + jumpDuration - Time.time <= 0)
         {
             jumping = false;
-            Debug.Log("now");
         }
     }
 
@@ -246,4 +248,12 @@ public class Movement2 : MonoBehaviour
 
     }
     #endregion"
+
+    [Header("ExtraFile")] public float extraSpeed;
+    private PlayerManager _playerManager;
+    private void UpdateFileValues()
+    {
+        extraSpeed = _playerManager.GetSpeedIncrease();
+        maxXSpeed = startmaxXSpeed + extraSpeed;
+    }
 }

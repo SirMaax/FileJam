@@ -34,7 +34,7 @@ public class FileManager : MonoBehaviour
                 word.gameObject.transform.position = temp;
                 return;
             }
-                
+            
 
             
         }
