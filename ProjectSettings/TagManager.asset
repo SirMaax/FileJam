@@ -21,7 +21,7 @@ TagManager:
   - Enemy
   - Weapon
   - Bullet
-  - 
+  - Particles
   - 
   - 
   - 
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Weapon
     uniqueID: 2428534169
+    locked: 0
+  - name: Particles
+    uniqueID: 1682080067
     locked: 0
   - name: Cursor
     uniqueID: 448138117
