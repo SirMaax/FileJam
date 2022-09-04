@@ -52,6 +52,9 @@ TagManager:
   - name: Actors
     uniqueID: 4035047295
     locked: 0
+  - name: Weapon
+    uniqueID: 2428534169
+    locked: 0
   - name: Cursor
     uniqueID: 448138117
     locked: 0

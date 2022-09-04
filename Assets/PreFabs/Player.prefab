@@ -5078,8 +5078,8 @@ MonoBehaviour:
   rotationCurrent: 0
   chargeBegin: 0
   deltaRotation: 0.1
-  chargeTime1: 1
-  chargeTime2: 2
+  chargeTime1: 0.5
+  chargeTime2: 1
   targetRot: {x: -30, y: -2.7, z: 0}
   extraRot: {x: 0, y: 0, z: 0}
   dmgList:
@@ -5104,6 +5104,9 @@ MonoBehaviour:
   minusCoolDown: -1
   perCentageCooldown: -0
   extraDmg: -1
+  test1: 0
+  test2: 0
+  bools: 
 --- !u!1 &3302373827458898807
 GameObject:
   m_ObjectHideFlags: 0
