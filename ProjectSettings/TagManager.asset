@@ -3,17 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-  - Wall
-  - Stage
-  - Bullet
-  - FileManager
-<<<<<<< HEAD
-  - FloatieSpawner
-=======
-  - Sound
->>>>>>> main
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -21,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Ground
-  - Player
-  - Enemy
-  - Weapon
-  - Bullet
-  - Particles
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -50,25 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 2799059389
-    locked: 0
-  - name: Foreground
-    uniqueID: 4100417439
-    locked: 0
-  - name: Actors
-    uniqueID: 4035047295
-    locked: 0
-  - name: Weapon
-    uniqueID: 2428534169
-    locked: 0
-  - name: Particles
-    uniqueID: 1682080067
-    locked: 0
-  - name: Cursor
-    uniqueID: 448138117
-    locked: 0
-  - name: UI
-    uniqueID: 778826579
     locked: 0
