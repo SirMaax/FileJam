@@ -9,7 +9,7 @@ public class EnemyAi : MonoBehaviour
     [Header("Type of Enemy")] 
     [Range(0,3)]public int typeOfEnemy;
 
-    public int[] healthOfEnemyType;
+    public float[] healthOfEnemyType;
     public float[] shootCooldown;
     public GameObject[] bullets;
 
@@ -19,7 +19,7 @@ public class EnemyAi : MonoBehaviour
     [Header("Status")] public bool canShoot;
     public bool inRange;
 
-    private int health;
+    public float health;
     void Start()
     {
         health = healthOfEnemyType[typeOfEnemy];
@@ -67,7 +67,7 @@ public class EnemyAi : MonoBehaviour
         this.inRange = inRange;
     }
 
-    public void takeDamage(int damage){
+    public void takeDamage(float damage){
         health -= damage;
         StartCoroutine(showDamageFeedback());
         if(health < 0)

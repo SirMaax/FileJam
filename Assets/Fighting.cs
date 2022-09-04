@@ -14,7 +14,7 @@ public class Fighting : MonoBehaviour
     public double chargeBegin;
     [SerializeField] private float chargeTime1;
     [SerializeField] private float chargeTime2;
-    [Header("WeaponInfo")] public int[] dmgList;
+    [Header("WeaponInfo")] public float[] dmgList;
     public float[] Cooldown;
     public GameObject[] BulletPreFabs;
 
@@ -22,6 +22,7 @@ public class Fighting : MonoBehaviour
     private PlayerManager _playerManager;
     [Header("ExtraInforo")] public float minusCoolDown;
     public float perCentageCooldown;
+    public float extraDmg;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,7 +88,7 @@ public class Fighting : MonoBehaviour
             //Do the pew pew
             GameObject go = Instantiate(BulletPreFabs[currentWeapon], transform.position, Quaternion.identity);
             go.GetComponent<BulletScript>().target = Cursor.ActualMousePos;
-            go.GetComponent<BulletScript>().damage = 10;
+            go.GetComponent<BulletScript>().damage = dmgList[currentWeapon] + extraDmg;
             go.GetComponent<BulletScript>().typeOfBullet = 0;
         }
 
@@ -107,6 +108,8 @@ public class Fighting : MonoBehaviour
         minusCoolDown = _playerManager.GetCooldownIncrease();
         float percentage = (Cooldown[currentWeapon] / 100) * minusCoolDown;
         perCentageCooldown = percentage;
-        
+        float temp = _playerManager.GetStrengthIncrease();
+        percentage = (dmgList[currentWeapon] / 100f) * temp;
+        extraDmg = percentage;
     }
 }

@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void Hit(int dmg)
+    public void Hit(float dmg)
     {
         Debug.Log("took dmg");
     }

@@ -9,7 +9,7 @@ public class BulletScript : MonoBehaviour
     [SerializeField] private float maxX;
     [SerializeField] private float maxY;
     public Vector3 target;
-    public int damage;
+    public float damage;
 
     // 0 Player Bullet; 1 Enemy Bullet
     public int typeOfBullet;

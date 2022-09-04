@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b47ba6626348bae5bf51e727981b71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: {fileID: 0}
 --- !u!1 &250355099590884754
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,7 +379,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfEnemy: 0
-  healthOfEnemyType: 64000000640000006400000064000000
+  healthOfEnemyType:
+  - 100
+  - 100
+  - 100
   shootCooldown:
   - 1
   - 0

@@ -79,7 +79,10 @@ MonoBehaviour:
   chargeBegin: 0
   chargeTime1: 0
   chargeTime2: 0
-  dmgList: 000000000000000000000000
+  dmgList:
+  - 100
+  - 10
+  - 10
   Cooldown:
   - 0
   - 1
@@ -90,6 +93,7 @@ MonoBehaviour:
   - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
   minusCoolDown: 0
   perCentageCooldown: 0
+  extraDmg: 0
 --- !u!1 &9192173196797350575
 GameObject:
   m_ObjectHideFlags: 0
