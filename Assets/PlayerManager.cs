@@ -6,6 +6,7 @@ using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -176,13 +177,15 @@ public class PlayerManager : MonoBehaviour
     public void TakeDmg()
     {
         GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(2);
-
+        //Took Dmg
+        health -= 1;
+        if (health <= 0) Die();
     }
 
     public void Die()
     {
         GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(5);
-
+        GameOver();
     }
 
     public void OpenFile(InputAction.CallbackContext context)
@@ -193,5 +196,22 @@ public class PlayerManager : MonoBehaviour
             //Open file
             Debug.Log(fileOpen);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag.Equals("Bullet"))
+        {
+            if (col.gameObject.GetComponent<BulletScript>().typeOfBullet == 1)
+            {
+                TakeDmg();
+                Destroy(col.gameObject);
+            }
+        }
+    }
+
+    private void GameOver()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
     }
 }
