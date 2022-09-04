@@ -64,8 +64,8 @@ public class Fighting : MonoBehaviour
         GameObject go = col.gameObject;
         if (go.tag.Equals("Enemy"))
         {
-            if(blow == 0)            go.GetComponent<Enemy>().Hit(dmgList[currentWeapon]);
-            if(blow == 1)            go.GetComponent<Enemy>().Hit(dmgList[currentWeapon]/2);
+            if(blow == 0)            go.GetComponent<EnemyAi>().takeDamage(dmgList[currentWeapon]);
+            if(blow == 1)            go.GetComponent<EnemyAi>().takeDamage(dmgList[currentWeapon]/2);
 
             blow = -1;
         }
