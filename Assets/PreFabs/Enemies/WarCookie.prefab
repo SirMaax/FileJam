@@ -273,6 +273,7 @@ MonoBehaviour:
   bulletPosition: {fileID: 0}
   canShoot: 0
   inRange: 0
+  pickUp: {fileID: 3049054148123709011, guid: 389b0f6d68078f4408870dc9ecdd5d3e, type: 3}
   health: 0
 --- !u!58 &7510748227267512555
 CircleCollider2D:

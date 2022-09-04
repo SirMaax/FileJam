@@ -120,6 +120,7 @@ MonoBehaviour:
   bulletPosition: {fileID: 5987749800937733139}
   canShoot: 1
   inRange: 0
+  pickUp: {fileID: 3049054148123709011, guid: 389b0f6d68078f4408870dc9ecdd5d3e, type: 3}
   health: 0
 --- !u!61 &5987749800158249041
 BoxCollider2D:

@@ -394,6 +394,7 @@ MonoBehaviour:
   bulletPosition: {fileID: 250355098017272940}
   canShoot: 1
   inRange: 0
+  pickUp: {fileID: 3049054148123709011, guid: 389b0f6d68078f4408870dc9ecdd5d3e, type: 3}
   health: 0
 --- !u!58 &250355099187919329
 CircleCollider2D:

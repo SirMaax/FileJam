@@ -18,7 +18,7 @@ public class EnemyAi : MonoBehaviour
 //Distance to next target unitl a new one is picked
     [Header("Status")] public bool canShoot;
     public bool inRange;
-
+    public GameObject pickUp;
     public float health;
     void Start()
     {
@@ -74,8 +74,12 @@ public class EnemyAi : MonoBehaviour
 
     }
 
-    private void die(){
+    private void die()
+    {
+        Instantiate(pickUp, transform.position, Quaternion.identity);
         Destroy(gameObject);
+        
+        
     }
 
     void OnTriggerEnter2D(Collider2D col2){
