@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FloatieSpawner
   layers:
   - Default
   - TransparentFX
@@ -38,6 +39,27 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackgroundLayer
+    uniqueID: 3788367967
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ForeGround
+    uniqueID: 60551259
+    locked: 0
+  - name: Actors
+    uniqueID: 1153099643
+    locked: 0
+  - name: Weapon
+    uniqueID: 3830061753
+    locked: 0
+  - name: Particles
+    uniqueID: 4244478671
+    locked: 0
+  - name: Cursor
+    uniqueID: 2781894983
+    locked: 0
+  - name: UI
+    uniqueID: 384851805
     locked: 0
