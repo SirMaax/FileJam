@@ -260,6 +260,7 @@ MonoBehaviour:
   - 100
   - 50
   - 200
+  - 200
   shootCooldown:
   - 2
   - 0
@@ -267,6 +268,7 @@ MonoBehaviour:
   bullets:
   - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
   - {fileID: 0}
+  - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
   - {fileID: 5574606318680467936, guid: a156b2b6b0dbdc14ba4a2667f19628b4, type: 3}
   bulletPosition: {fileID: 0}
   canShoot: 0
