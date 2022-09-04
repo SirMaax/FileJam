@@ -20,14 +20,20 @@ public class EnemyAi : MonoBehaviour
     public bool inRange;
     public GameObject pickUp;
     public float health;
+    private bool noGo = true;
+    public ParticleSystem spawning;
+
     void Start()
     {
+        StartCoroutine(Wait());
+
         health = healthOfEnemyType[typeOfEnemy];
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (noGo) return;
 
         if (typeOfEnemy == 0) Enemy1();
         else if (typeOfEnemy == 3) Enemy4();
@@ -110,7 +116,23 @@ public class EnemyAi : MonoBehaviour
 
     }
 
+    private IEnumerator Wait()
+    {
+        spawning.Play();
+        yield return new WaitForSeconds(1);
+        noGo = false;
+        Enemy e = GetComponent<Enemy>();
+        if (e != null)
+        {
+            e.enabled = true;
+        }
 
+        WarCookie c = GetComponent<WarCookie>();
+        if (c != null)
+        {
+            c.enabled = true;
+        }
+    }
 
     
 }

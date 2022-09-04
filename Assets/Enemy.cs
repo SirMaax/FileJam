@@ -12,7 +12,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] GameObject bulletPosition;
     float timePassed;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -53,5 +52,5 @@ public class Enemy : MonoBehaviour
 
     }
 
-
+    
 }
