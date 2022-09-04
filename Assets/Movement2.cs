@@ -175,10 +175,11 @@ public class Movement2 : MonoBehaviour
 
         if (context.started)
         {
-            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(6);
 
             if (!CanJump()) return; //Coyote Time
             //InputBuffer
+            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(6);
+
             
             jumping = true;
             timeJumped = Time.time;
