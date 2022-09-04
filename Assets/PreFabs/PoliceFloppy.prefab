@@ -360,7 +360,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 20
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -394,6 +394,7 @@ MonoBehaviour:
   bulletPosition: {fileID: 250355098017272940}
   canShoot: 1
   inRange: 0
+  health: 0
 --- !u!58 &250355099187919329
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5987749800158249040}
   m_Layer: 8
   m_Name: Dino
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -259920001
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2f49b4872221a5800a845c7298ea4868, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfEnemy: 3
-  healthOfEnemyType: 64000000640000006400000064000000
+  healthOfEnemyType: []
   shootCooldown:
   - 0
   - 0
@@ -116,6 +116,7 @@ MonoBehaviour:
   bulletPosition: {fileID: 5987749800937733139}
   canShoot: 1
   inRange: 0
+  health: 0
 --- !u!61 &5987749800158249041
 BoxCollider2D:
   m_ObjectHideFlags: 0
