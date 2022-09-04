@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5987749800158249043}
   - component: {fileID: 5987749800158249041}
   - component: {fileID: 5987749800158249040}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Dino
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &5987749800259618200
 GameObject:
   m_ObjectHideFlags: 0

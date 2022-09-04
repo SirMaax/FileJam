@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 6124600879850475975}
   - component: {fileID: 250355099187919329}
   - component: {fileID: 250355099187919330}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: PoliceFloppy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 6735082213023974511}
   - component: {fileID: 6735082213023974510}
   - component: {fileID: 7510748227267512555}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: WarCookie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
