@@ -12,6 +12,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float timeBetweenRounds;
     [Header("Enemy")] public GameObject[] enemy;
     private bool once = false;
+    private bool spawning = false;
     /// <summary>
     /// ////////////////
     /// </summary>
@@ -24,11 +25,18 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!spawning && !PlayerManager.fileOpen)
+        {
+            
+            SpawnNormal();
+            
+        }
         CheckHowManyEnemies();
     }
 
     private void SpawnNormal()
     {
+        spawning = true;
         foreach (var pos in spawningPoints)
         {
             if (Random.value < changeOfSpawning[currentWave])
@@ -48,13 +56,17 @@ public class EnemySpawner : MonoBehaviour
         if (enemies.Length == 0 && !once)
         {
             once = true;
-            StartCoroutine(NextRound());
+            GameObject.FindWithTag("FileManager").GetComponent<FileManager>().Show(true);
+            spawning = false;
+            GameObject.FindWithTag("Player").GetComponent<PlayerManager>().health =
+                GameObject.FindWithTag("Player").GetComponent<PlayerManager>().startHealth;
         }
 
     }
 
     private IEnumerator NextRound()
     {
+        
         yield return new WaitForSeconds(timeBetweenRounds);
         currentWave++;
         SpawnNormal();

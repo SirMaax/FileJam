@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
     public bool test2;
     public float testValue;
 
-    private float startHealth;
+    public float startHealth;
     
     
     void Start()
@@ -228,6 +228,6 @@ public class PlayerManager : MonoBehaviour
 
     private void GameOver()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
     }
 }
