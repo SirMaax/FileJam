@@ -32,7 +32,9 @@ public class Enemy : MonoBehaviour
 
     public void Hit(float dmg)
     {
-        Debug.Log("took dmg");
+        Debug.Log("took dmg from hammer");
+        GetComponent<EnemyAi>().takeDamage(dmg);
+
     }
 
     public void turn(){

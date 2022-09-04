@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -28,9 +29,18 @@ public class Fighting : MonoBehaviour
     public Sprite[] sprites;
     [Header("Refs")] private PolygonCollider2D collider;
     private PlayerManager _playerManager;
+    public GameObject[] guns;
     [Header("ExtraInforo")] public float minusCoolDown;
     public float perCentageCooldown;
     public float extraDmg;
+    private int blow;
+    private int direction = -1;
+
+    public int test1;
+
+    public int test2;
+
+    public bool[] bools;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +53,7 @@ public class Fighting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Flip();
         Rotate();
         UpdateFileValues();
         if (charging) ChargingWeapon();
@@ -53,8 +64,13 @@ public class Fighting : MonoBehaviour
         GameObject go = col.gameObject;
         if (go.tag.Equals("Enemy"))
         {
-            go.GetComponent<Enemy>().Hit(dmgList[currentWeapon]);
+            if(blow == 0)            go.GetComponent<Enemy>().Hit(dmgList[currentWeapon]);
+            if(blow == 1)            go.GetComponent<Enemy>().Hit(dmgList[currentWeapon]/2);
+
+            blow = -1;
         }
+        
+        
     }
 
     IEnumerator WeaponCooldown()
@@ -73,15 +89,20 @@ public class Fighting : MonoBehaviour
             {
                 //HeavyBlow
                 Debug.Log("heavyblow");
+                blow = 0;
+                collider.enabled = true;
+                StartCoroutine(DisableCollider());
                 ResetRotation();
                 return;
             }
             else if (timeCharged >= chargeTime1)
             {
                 //LightBlow
+                blow = 1;
                 Debug.Log("lightBlow");
                 ResetRotation();
-
+                StartCoroutine(DisableCollider());
+                collider.enabled = true;
                 //Reset Rotation
                 return;
             }
@@ -116,6 +137,8 @@ public class Fighting : MonoBehaviour
 
     private void Rotate()
     {
+        
+        
         // transform.right = (Vector3)InputManager.aimingMouse - transform.position;
        thisRotation = Cursor.ActualMousePos - transform.position;
        Vector3 test = transform.rotation * extraRot;
@@ -158,5 +181,53 @@ public class Fighting : MonoBehaviour
         // extraRot = Quaternion.identity;
         // weaponGameObject.transform.rotation = startRot;
         charging = false;
+    }
+
+    public void SwitchWeapon(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            currentWeapon = currentWeapon == 0 ? 1 : 0;
+            UpdateSprite(currentWeapon);
+            if (currentWeapon == 1)
+            {
+                guns[0].SetActive(false);
+                guns[1].SetActive(true);
+            }
+            else
+            {
+                guns[1].SetActive(false);
+                guns[0].SetActive(true);
+            }
+        }
+    }
+
+    private void Flip()
+    {
+        // int tempdir= Movement2.Position.x - InputManager.MousePosition.x  < 0? -1 : 1;
+        // if (tempdir == direction) return;
+        // Debug.Log("flipped");
+        // direction = tempdir;
+        // guns[0].GetComponent<SpriteRenderer>().flipX = direction == -1;
+        // guns[0].GetComponent<SpriteRenderer>().flipY = direction == -1;
+        // // guns[1].GetComponent<SpriteRenderer>().flipX = direction == test1;
+        // // guns[1].GetComponent<SpriteRenderer>().flipY = direction == test2;
+        // if (direction < -1)
+        // {
+        //     guns[1].GetComponent<SpriteRenderer>().flipX = bools[0];
+        //     guns[1].GetComponent<SpriteRenderer>().flipY = bools[1];
+        //
+        // }
+        // else
+        // {
+        //     guns[1].GetComponent<SpriteRenderer>().flipX = bools[2];
+        //     guns[1].GetComponent<SpriteRenderer>().flipY = bools[3];
+        // }
+    }
+
+    private IEnumerator DisableCollider()
+    {
+        yield return new WaitForSeconds(0.1f);
+        collider.enabled = false;
     }
 }

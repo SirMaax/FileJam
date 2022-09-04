@@ -70,8 +70,8 @@ public class EnemyAi : MonoBehaviour
     public void takeDamage(float damage){
         health -= damage;
         StartCoroutine(showDamageFeedback());
-        if(health < 0)
-            die();
+        
+
     }
 
     private void die(){
@@ -93,6 +93,7 @@ public class EnemyAi : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.1f);
         GetComponent<SpriteRenderer>().color = Color.white;
+        if(health < 0)            die();
     }
 
 
