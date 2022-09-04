@@ -7,7 +7,7 @@ public class FileManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject[] colliders; //Here is position of the 3 target boxes
     public Word[] filePostions; //Important for later which box is used first
-
+    public GameObject[] ui;
 
     public void Released(Word word)
     {
@@ -24,18 +24,25 @@ public class FileManager : MonoBehaviour
                 
             // if (ele.GetComponent<BoxCollider2D>().bounds.Contains(InputManager.MousePosition)) ;
             {
+                
+
                 for (int i = 0; i < filePostions.Length; i++)
                 {
                     if (filePostions[i] == null) continue;
                     if (filePostions[i].Equals(word))
                     {
                         filePostions[i] = null;
+                        ui[ele.GetComponent<TargetWord2>().position].GetComponent<SpriteRenderer>().sprite = null;
                     }
                 }
                 if (filePostions[ele.GetComponent<TargetWord2>().position] != null)
                 {
                     filePostions[ele.GetComponent<TargetWord2>().position].GetComponent<Word>().ResetPos();
+                    ui[ele.GetComponent<TargetWord2>().position].GetComponent<SpriteRenderer>().sprite = null;
                 }
+
+                ui[ele.GetComponent<TargetWord2>().position].GetComponent<SpriteRenderer>().sprite =
+                    word.GetComponent<SpriteRenderer>().sprite;
                 filePostions[ele.GetComponent<TargetWord2>().position] = word;
                 var temp = ele.transform.position;
                 temp.z -= 1;
@@ -61,11 +68,27 @@ public class FileManager : MonoBehaviour
 
     public void Show(bool yesorno)
     {
+        if (yesorno)
+        {
+            
+        }
         transform.GetChild(3).GetComponent<SpriteRenderer>().enabled = yesorno;
         GetComponent<SpriteRenderer>().enabled = yesorno;
         transform.GetChild(3).GetChild(0).GetComponent<SpriteRenderer>().enabled = yesorno;
         transform.GetChild(3).GetChild(1).GetComponent<SpriteRenderer>().enabled = yesorno;
         transform.GetChild(3).GetChild(2).GetComponent<SpriteRenderer>().enabled = yesorno;
+        transform.GetChild(3).GetChild(0).GetComponent<BoxCollider2D>().enabled = yesorno;
+        transform.GetChild(3).GetChild(1).GetComponent<BoxCollider2D>().enabled = yesorno;
+        transform.GetChild(3).GetChild(2).GetComponent<BoxCollider2D>().enabled = yesorno;
+        transform.GetChild(0).GetComponent<BoxCollider2D>().enabled = yesorno;
+        transform.GetChild(1).GetComponent<BoxCollider2D>().enabled = yesorno;
+        transform.GetChild(2).GetComponent<BoxCollider2D>().enabled = yesorno;
 
+
+    }
+
+    private void Stuff()
+    {
+        
     }
 }
