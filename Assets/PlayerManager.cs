@@ -61,6 +61,8 @@ public class PlayerManager : MonoBehaviour
     //Is triggered when Particle is pickedu p
     public void PickUp()
     {
+        GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(12);
+
         ps.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         ps.transform.GetChild(1).GetComponent<ParticleSystem>().Play();
         IncreaseFileSize(10f);
@@ -168,5 +170,17 @@ public class PlayerManager : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public void TakeDmg()
+    {
+        GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(2);
+
+    }
+
+    public void Die()
+    {
+        GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(5);
+
     }
 }

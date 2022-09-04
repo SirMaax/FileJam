@@ -54,6 +54,8 @@ public class EnemyAi : MonoBehaviour
         if (!canShoot || !inRange) return;
         canShoot = false;
         StartCoroutine(ShootCooldown());
+        if(typeOfEnemy == 4)            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(13);
+        else             GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(15);
 
         GameObject go = Instantiate(bullets[typeOfEnemy],bulletPosition.transform.position,Quaternion.identity);
         go.transform.right = Movement2.Position - go.transform.position;
@@ -75,13 +77,16 @@ public class EnemyAi : MonoBehaviour
 
     public void takeDamage(float damage){
         health -= damage;
+        GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(3);
         StartCoroutine(showDamageFeedback());
-        
+
 
     }
 
     private void die()
     {
+        GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(4);
+
         Instantiate(pickUp, transform.position, Quaternion.identity);
         Destroy(gameObject);
         

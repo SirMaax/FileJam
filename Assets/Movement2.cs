@@ -88,9 +88,13 @@ public class Movement2 : MonoBehaviour
             
             temp.x = Mathf.MoveTowards(temp.x, 0, slowDown);
             rb.velocity = temp;
+            // GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Stop(1);
+
         }
         else
         {
+            // GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(1);
+
             if(lastDirection != direction)
             {
                 var vel = rb.velocity;
@@ -167,6 +171,8 @@ public class Movement2 : MonoBehaviour
     {
         if (context.started)
         {
+            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(6);
+
             if (!CanJump()) return; //Coyote Time
             //InputBuffer
             

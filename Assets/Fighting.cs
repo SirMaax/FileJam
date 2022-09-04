@@ -93,12 +93,16 @@ public class Fighting : MonoBehaviour
                 collider.enabled = true;
                 StartCoroutine(DisableCollider());
                 ResetRotation();
+                GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(1);
+
                 return;
             }
             else if (timeCharged >= chargeTime1)
             {
                 //LightBlow
                 blow = 1;
+                GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(1);
+
                 Debug.Log("lightBlow");
                 ResetRotation();
                 StartCoroutine(DisableCollider());
@@ -125,6 +129,7 @@ public class Fighting : MonoBehaviour
         else
         {
             //Do the pew pew
+            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(0);
             GameObject go = Instantiate(BulletPreFabs[currentWeapon], transform.position, Quaternion.identity);
             go.GetComponent<BulletScript>().target = Cursor.ActualMousePos;
             go.GetComponent<BulletScript>().damage = dmgList[currentWeapon] + extraDmg;

@@ -5,32 +5,16 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {   
 
-    public static SoundManager Instance;
 
-    [SerializeField] private AudioSource effectSource;
-    void Awake(){
-        if(Instance == null){
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else{
-            Destroy(gameObject);
-        }
-    }
+    [SerializeField] private AudioSource[] effectSource;
 
-    public void PlaySound(AudioClip clip){
-        effectSource.PlayOneShot(clip);
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void Play(int index){
+        effectSource[index].Play();
     }
+    public void Stop(int index){
+        effectSource[index].Stop();
+    }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
