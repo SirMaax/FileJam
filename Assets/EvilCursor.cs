@@ -55,7 +55,7 @@ public class EvilCursor : MonoBehaviour
             transform.right = Movement2.Position - transform.position;
             children[0].parent = transform;
             body.AddForce( (playerPos - transform.position) * (force + Random.Range(-8, 16))) ;
-            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(14);
+            // GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(14);
 
             yield return new WaitForSeconds(1);
         }

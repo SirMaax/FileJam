@@ -55,7 +55,7 @@ public class EnemyAi : MonoBehaviour
         canShoot = false;
         StartCoroutine(ShootCooldown());
         if(typeOfEnemy == 4)            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(13);
-        else             GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(15);
+        else             GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(16);
 
         GameObject go = Instantiate(bullets[typeOfEnemy],bulletPosition.transform.position,Quaternion.identity);
         go.transform.right = Movement2.Position - go.transform.position;

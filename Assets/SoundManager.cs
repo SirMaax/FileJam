@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour
 
 
     public void Play(int index){
-        // effectSource[index].Play();
+        effectSource[index].Play();
     }
     public void Stop(int index){
         effectSource[index].Stop();

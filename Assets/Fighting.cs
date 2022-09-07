@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using TreeEditor;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -45,6 +47,26 @@ public class Fighting : MonoBehaviour
     public GameObject gun;
 
     public bool[] bools;
+
+    [SerializeField] private float maxCharge;
+    [SerializeField] private float maxCharge2;
+
+    [SerializeField] private float maxChargeAfterHit;
+    [SerializeField] private float maxChargeAfterHit2;
+
+
+        [SerializeField] private float changeRate;
+        [SerializeField] private float angleAfterhit;
+            [SerializeField] private float angleAfterhit2;
+
+        [SerializeField] private float getToBaseCharge;
+        public bool hitting = false;
+
+        public bool getToBase = false;
+
+        public GameObject chageParticle;
+
+        public bool onceChage = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,14 +79,76 @@ public class Fighting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckMouseCursorStuff();
         
+        double timeCharged2 = Time.time - chargeBegin;
 
+        if (timeCharged2 >= chargeTime2 && !onceChage && chargeBegin != 0 && charging)
+        {
+            onceChage = true;
+            chageParticle.GetComponent<ParticleSystem>().Play();
+        }
+        if (charging)
+        {
+            if (flipOnce)
+            {
+                angle = Mathf.MoveTowards(angle, maxCharge2,  changeRate);
+
+            }
+            else
+            {
+                angle = Mathf.MoveTowards(angle, maxCharge, changeRate);
+
+            }
+        }
+
+        if (hitting)
+        {
+            if (flipOnce)
+            {
+                angle = Mathf.MoveTowards(angle, angleAfterhit2, maxChargeAfterHit2);
+                if(angle >= angleAfterhit2)
+                {
+                
+                    hitting = false;
+                    getToBase = true;
+                    // angle = 0;
+                }
+            }
+            else
+            {
+                angle = Mathf.MoveTowards(angle,  angleAfterhit , maxChargeAfterHit);
+                if(angle <= angleAfterhit)
+                {
+                
+                    hitting = false;
+                    getToBase = true;
+                    // angle = 0;
+                }
+            }
+            // if (Mathf.Abs(angle - angleAfterhit) <= maxChargeAfterHit * 1.5f)
+            
+        }
+
+        if (getToBase)
+        {
+            angle = Mathf.MoveTowards(angle, 0, getToBaseCharge);
+            if (flipOnce && angle <= 0)
+            {
+                getToBase = false;
+
+            }
+            else if (angle >= 0 && !flipOnce)
+            {
+                getToBase = false;
+            }
+        }
         Flip();
         Rotate();
         UpdateFileValues();
         if (charging) ChargingWeapon();
     }
-
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         GameObject go = col.gameObject;
@@ -90,13 +174,19 @@ public class Fighting : MonoBehaviour
     public void Shot(InputAction.CallbackContext context)
     {
         if (PlayerManager.fileOpen) return;
-
+        if (hitting || getToBase) return;
         if (!canShot) return;
+
+
+        
         if (context.canceled && canShot && charging)
         {
             double timeCharged = Time.time - chargeBegin;
             if (timeCharged >= chargeTime2)
             {
+                chageParticle.GetComponent<ParticleSystem>().Stop();
+                onceChage = false;
+
                 //HeavyBlow
                 Debug.Log("heavyblow");
                 blow = 0;
@@ -104,7 +194,9 @@ public class Fighting : MonoBehaviour
                 StartCoroutine(DisableCollider());
                 ResetRotation();
                 GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(1);
-
+                GameObject.FindWithTag("Player").GetComponent<PlayerManager>().DecreaseFileSize(5);
+                hitting = true;
+                charging = false;
                 return;
             }
             else if (timeCharged >= chargeTime1)
@@ -112,12 +204,17 @@ public class Fighting : MonoBehaviour
                 //LightBlow
                 blow = 1;
                 GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(1);
-
+                chageParticle.GetComponent<ParticleSystem>().Stop();
+                onceChage = false;
                 Debug.Log("lightBlow");
                 ResetRotation();
                 StartCoroutine(DisableCollider());
                 collider.enabled = true;
                 //Reset Rotation
+                GameObject.FindWithTag("Player").GetComponent<PlayerManager>().DecreaseFileSize(5);
+                hitting = true;
+                charging = false;
+
                 return;
             }
             else
@@ -126,6 +223,7 @@ public class Fighting : MonoBehaviour
                 charging = false;
                 Debug.Log("no blow");
                 ResetRotation();
+                angle = 0;
                 return;
             }
         }
@@ -144,26 +242,33 @@ public class Fighting : MonoBehaviour
             go.GetComponent<BulletScript>().target = Cursor.ActualMousePos;
             go.GetComponent<BulletScript>().damage = dmgList[currentWeapon] + extraDmg;
             go.GetComponent<BulletScript>().typeOfBullet = 0;
+            GameObject.FindWithTag("Player").GetComponent<PlayerManager>().DecreaseFileSize(5);
         }
 
         canShot = false;
         StartCoroutine(WeaponCooldown());
     }
 
+
+    [Header("Test")] [SerializeField] private Vector3 test;
+    [SerializeField] private Vector3 axis;
+    [SerializeField] private float angle;
+    [SerializeField] private Vector3 axis2;
+    [SerializeField] private float angle2;
+
     private void Rotate()
     {
-        
-        if (PlayerManager.fileOpen) return;
 
-        // transform.right = (Vector3)InputManager.aimingMouse - transform.position;
-       thisRotation = Cursor.ActualMousePos - transform.position;
-       Vector3 test = transform.rotation * extraRot;
-       test.z = 0;
-       // test.x = Mathf.Abs(test.x);
-       // test.y = Mathf.Abs(test.y);
-       Vector3 finalVec = Cursor.ActualMousePos - (test);
-        transform.right = finalVec - transform.position;
-        // transform.rotation *= extraRot;
+            test = (Vector3) InputManager.MousePosition -  transform.position;
+            test = Quaternion.AngleAxis(angle, axis) * test; 
+        
+        Debug.DrawLine(transform.position,InputManager.MousePosition,Color.green);
+
+        // Debug.DrawLine(transform.position,InputManager.aimingMouse,Color.red);
+
+        transform.right =  test;
+
+
     }
 
     private void UpdateFileValues()
@@ -193,12 +298,17 @@ public class Fighting : MonoBehaviour
 
     private void ResetRotation()
     {
-        extraRot = Vector3.zero;
-        // extraRot = Quaternion.identity;
-        // weaponGameObject.transform.rotation = startRot;
-        charging = false;
+        
+        
+        // extraRot = Vector3.zero;
+        // // extraRot = Quaternion.identity;
+        // // weaponGameObject.transform.rotation = startRot;
+        // charging = false;
     }
 
+    private void AfterHit()
+    {
+    }
     public void SwitchWeapon(InputAction.CallbackContext context)
     {
         if (PlayerManager.fileOpen) return;
@@ -222,30 +332,33 @@ public class Fighting : MonoBehaviour
 
     private void Flip()
     {
-        // int tempdir= Movement2.Position.x - InputManager.MousePosition.x  < 0? -1 : 1;
-        // if (tempdir == direction) return;
-        // Debug.Log("flipped");
-        // direction = tempdir;
-        // guns[0].GetComponent<SpriteRenderer>().flipX = direction == -1;
-        // guns[0].GetComponent<SpriteRenderer>().flipY = direction == -1;
-        // // guns[1].GetComponent<SpriteRenderer>().flipX = direction == test1;
-        // // guns[1].GetComponent<SpriteRenderer>().flipY = direction == test2;
-        // if (direction < -1)
-        // {
-        //     guns[1].GetComponent<SpriteRenderer>().flipX = bools[0];
-        //     guns[1].GetComponent<SpriteRenderer>().flipY = bools[1];
-        //
-        // }
-        // else
-        // {
-        //     guns[1].GetComponent<SpriteRenderer>().flipX = bools[2];
-        //     guns[1].GetComponent<SpriteRenderer>().flipY = bools[3];
-        // }
+
     }
 
     private IEnumerator DisableCollider()
     {
         yield return new WaitForSeconds(0.1f);
         collider.enabled = false;
+    }
+
+    public bool flipOnce = false;
+    public Vector3 customVec;
+    private void CheckMouseCursorStuff()
+    
+    { if (Cursor.ActualMousePos.x < transform.position.x && !flipOnce && !getToBase)
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+            transform.GetChild(0).transform.Translate(customVec);
+                flipOnce = true;
+            }
+
+        if (Cursor.ActualMousePos.x > transform.position.x && flipOnce &&  !getToBase)
+        {
+            transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = false;
+            transform.GetChild(0).transform.Translate(-customVec);
+
+
+            flipOnce = false;
+        }
     }
 }

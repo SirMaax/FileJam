@@ -29,7 +29,8 @@ public class EnemySpawner : MonoBehaviour
         {
             
             SpawnNormal();
-            
+            once = false;
+
         }
         CheckHowManyEnemies();
     }
@@ -56,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
         if (enemies.Length == 0 && !once)
         {
             once = true;
-            GameObject.FindWithTag("FileManager").GetComponent<FileManager>().Show(true);
+            GameObject.FindWithTag("Player").GetComponent<PlayerManager>().OpenFile2();
             spawning = false;
             GameObject.FindWithTag("Player").GetComponent<PlayerManager>().health =
                 GameObject.FindWithTag("Player").GetComponent<PlayerManager>().startHealth;

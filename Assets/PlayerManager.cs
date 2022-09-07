@@ -1,12 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -39,7 +32,7 @@ public class PlayerManager : MonoBehaviour
         startFileSize = fileSize;
         fileSizeMeterLength = fileSizeMeter.transform.localScale.x;
         fileSizeMeterOriginalXPos = fileSizeMeter.transform.position.x;
-        _fileManager = GameObject.FindWithTag("FileManager").GetComponent<FileManager>();
+        // _fileManager = GameObject.FindWithTag("FileManager").GetComponent<FileManager>();
         CheckAttributeHowStrong();
         fileOpen = false;
     }
@@ -212,6 +205,13 @@ public class PlayerManager : MonoBehaviour
             //Open file
             Debug.Log(fileOpen);
         }
+    }
+    public void OpenFile2()
+    {
+            fileOpen = !fileOpen;
+            GameObject.FindWithTag("FileManager").GetComponent<FileManager>().Show(fileOpen);
+            //Open file
+            Debug.Log(fileOpen);
     }
 
     private void OnTriggerEnter2D(Collider2D col)

@@ -14,7 +14,7 @@ public class FileManager : MonoBehaviour
         //Check if mouse collides with one of the colliders
         foreach (var ele in colliders)
         {
-            GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(11);
+            // GameObject.FindWithTag("Sound").GetComponent<SoundManager>().Play(11);
 
             BoxCollider2D col = ele.GetComponent<BoxCollider2D>();
             if(InputManager.MousePosition.x < col.bounds.center.x + col.bounds.size.x 
